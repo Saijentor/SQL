@@ -1,6 +1,5 @@
 1)Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол. Вывести: model, speed и hd:
-SELECT model,speed,hd 
-FROM pc
+SELECT model,speed,hd FROM pc
 WHERE price < 500;
 
 2)Найдите производителей принтеров. Вывести: maker
@@ -23,9 +22,8 @@ SELECT model,speed,hd FROM pc
 WHERE cd IN('12x','24x') AND price < 600;
 
 6)Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость.
-SELECT DISTINCT maker,speed 
-FROM product p JOIN laptop l
-ON p.model = l.model
+SELECT DISTINCT maker,speed FROM product p 
+JOIN laptop l ON p.model = l.model
 WHERE hd >= 10
 
 7)Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
@@ -50,12 +48,13 @@ WHERE type = 'laptop'
 
 9)Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
 SELECT DISTINCT maker FROM pc
-JOIN product p
-ON p.model = pc.model
+JOIN product p ON p.model = pc.model
 WHERE speed >= 450
 
 10)Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
 SELECT p.model,price FROM printer p
-JOIN product pr
-ON pr.model = p.model
+JOIN product pr ON pr.model = p.model
 WHERE price = (SELECT max(price) FROM printer)
+
+11)Найдите среднюю скорость ПК.
+SELECT AVG(speed) FROM PC
