@@ -52,4 +52,10 @@ WHERE type = 'laptop'
 SELECT DISTINCT maker FROM pc
 JOIN product p
 ON p.model = pc.model
-where speed >= 450
+WHERE speed >= 450
+
+10)Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
+SELECT p.model,price FROM printer p
+JOIN product pr
+ON pr.model = p.model
+WHERE price = (SELECT max(price) FROM printer)
