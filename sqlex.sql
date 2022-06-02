@@ -29,7 +29,6 @@ ON p.model = l.model
 WHERE hd >= 10
 
 7)Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
-Задание 7
 SELECT DISTINCT PC.model, price FROM PC 
 JOIN Product p ON PC.model = p.model 
 WHERE maker = 'B'
@@ -41,3 +40,10 @@ UNION
 SELECT DISTINCT pr.model, price FROM printer pr 
 JOIN Product p ON pr.model = p.model 
 WHERE maker = 'B'
+
+8)Найдите производителя, выпускающего ПК, но не ПК-блокноты.
+SELECT maker FROM product
+WHERE type = 'pc'
+EXCEPT
+SELECT maker FROM product
+WHERE type = 'laptop'
