@@ -47,3 +47,9 @@ WHERE type = 'pc'
 EXCEPT
 SELECT maker FROM product
 WHERE type = 'laptop'
+
+9)Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
+SELECT DISTINCT maker FROM pc
+JOIN product p
+ON p.model = pc.model
+where speed >= 450
