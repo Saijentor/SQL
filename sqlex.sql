@@ -68,3 +68,9 @@ SELECT AVG(speed) FROM pc
 JOIN product p
 ON pc.model = p.model
 WHERE p.maker = 'A'
+
+14)Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
+SELECT s.class,name,c.country FROM ships s
+JOIN classes c
+ON s.class = c.class
+WHERE numGuns >= 10
