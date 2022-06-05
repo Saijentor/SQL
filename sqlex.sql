@@ -103,3 +103,9 @@ GROUP BY maker,price
 SELECT maker, AVG(screen) avg_screen FROM laptop l
 JOIN product p ON p.model = l.model
 GROUP BY maker
+
+20)Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК.
+SELECT maker, COUNT(model) count_pc FROM product
+WHERE type = 'pc'
+GROUP BY maker
+HAVING COUNT(model) >= 3
