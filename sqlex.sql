@@ -74,3 +74,8 @@ SELECT s.class,name,c.country FROM ships s
 JOIN classes c
 ON s.class = c.class
 WHERE numGuns >= 10
+
+15)Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+SELECT hd FROM pc
+GROUP BY (hd)
+HAVING COUNT(hd) >= 2
