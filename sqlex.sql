@@ -109,3 +109,9 @@ SELECT maker, COUNT(model) count_pc FROM product
 WHERE type = 'pc'
 GROUP BY maker
 HAVING COUNT(model) >= 3
+
+21)Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+Вывести: maker, максимальная цена.
+SELECT maker, MAX(price) max_price FROM product p
+JOIN pc ON p.model = pc.model
+GROUP BY maker
