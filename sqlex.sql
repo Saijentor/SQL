@@ -120,3 +120,14 @@ GROUP BY maker
 SELECT speed, AVG(price) avg_price FROM pc
 WHERE speed > 600
 GROUP BY speed
+
+23)Найдите производителей, которые производили бы как ПК
+со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
+Вывести: Maker
+SELECT maker FROM pc
+JOIN product p ON p.model = pc.model
+WHERE speed >= 750
+INTERSECT
+SELECT maker FROM laptop l
+JOIN product p ON p.model = l.model
+WHERE speed >= 750
