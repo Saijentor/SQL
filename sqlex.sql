@@ -131,3 +131,16 @@ INTERSECT
 SELECT maker FROM laptop l
 JOIN product p ON p.model = l.model
 WHERE speed >= 750
+
+24)Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+WITH a_model AS (  
+  SELECT model,price 
+  FROM laptop 
+  UNION ALL 
+  SELECT model,price 
+  FROM pc 
+  UNION ALL 
+  SELECT model,price
+  FROM printer) 
+SELECT distinct model
+FROM a_model WHERE price in ( SELECT max(price) FROM a_model)
