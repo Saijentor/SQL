@@ -115,3 +115,8 @@ HAVING COUNT(model) >= 3
 SELECT maker, MAX(price) max_price FROM product p
 JOIN pc ON p.model = pc.model
 GROUP BY maker
+
+22)Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена
+SELECT speed, AVG(price) avg_price FROM pc
+WHERE speed > 600
+GROUP BY speed
