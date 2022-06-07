@@ -152,3 +152,15 @@ AND maker IN (SELECT maker FROM Product JOIN Pc ON Product.model = Pc.model
 WHERE ram = (SELECT MIN(ram) FROM Pc) 
 AND speed = (SELECT MAX(speed) FROM Pc 
 WHERE ram = (SELECT MIN(ram) FROM Pc)))
+
+26)Найдите среднюю цену ПК и ПК-блокнотов, выпущенных производителем A (латинская буква). Вывести: одна общая средняя цена.
+WITH a_price AS (
+SELECT price FROM pc
+JOIN product p ON pc.model = p.model
+WHERE maker = 'a'
+UNION ALL
+SELECT price FROM laptop l
+JOIN product p ON l.model = p.model
+WHERE maker = 'a')
+SELECT avg(price) AVG_Price FROM a_price
+
