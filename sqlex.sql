@@ -1,4 +1,8 @@
 1)Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол. Вывести: model, speed и hd:
+--Find the model number, speed and hard drive capacity for all the PCs with prices below $500. Result set: model, speed, hd.
+SELECT model,speed,hd FROM pc
+WHERE price < 500;
+
 SELECT model,speed,hd FROM pc
 WHERE price < 500;
 
@@ -134,16 +138,13 @@ WHERE speed >= 750
 
 24)Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
 WITH a_model AS (  
-SELECT model,price 
-FROM laptop 
+SELECT model,price FROM laptop 
 UNION ALL 
-SELECT model,price 
-FROM pc 
+SELECT model,price FROM pc 
 UNION ALL 
-SELECT model,price
-FROM printer) 
-SELECT distinct model
-FROM a_model WHERE price in ( SELECT max(price) FROM a_model)
+SELECT model,price FROM printer) 
+SELECT distinct model FROM a_model 
+WHERE price in ( SELECT max(price) FROM a_model)
 
 25)Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM. Вывести: Maker
 SELECT DISTINCT maker FROM Product 
