@@ -3,22 +3,23 @@
 SELECT model,speed,hd FROM pc
 WHERE price < 500;
 
-SELECT model,speed,hd FROM pc
-WHERE price < 500;
-
 2)Найдите производителей принтеров. Вывести: maker
+--List all printer makers. Result set: maker.
 SELECT DISTINCT maker FROM product
 WHERE type = 'printer';
 
 3)Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.:
+--Find the model number, RAM and screen size of the laptops with prices over $1000.
 SELECT model,ram,screen FROM laptop
 WHERE price > 1000;
 
 4)Найдите все записи таблицы Printer для цветных принтеров.:
+--Find all records from the Printer table containing data about color printers.
 SELECT * FROM Printer
 WHERE color = 'y';
 
 5)Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12x или 24x CD и цену менее 600 дол.:
+--Find the model number, speed and hard drive capacity of PCs cheaper than $600 having a 12x or a 24x CD drive.
 SELECT model,speed,hd FROM pc
 WHERE (cd = '12x' OR cd ='24x') AND price < 600;
 или
@@ -26,6 +27,7 @@ SELECT model,speed,hd FROM pc
 WHERE cd IN('12x','24x') AND price < 600;
 
 6)Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость.
+--For each maker producing laptops with a hard drive capacity of 10 Gb or higher, find the speed of such laptops. Result set: maker, speed.
 SELECT DISTINCT maker,speed FROM product p 
 JOIN laptop l ON p.model = l.model
 WHERE hd >= 10
