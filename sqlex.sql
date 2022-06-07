@@ -1,38 +1,39 @@
-1)Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол. Вывести: model, speed и hd:
---Find the model number, speed and hard drive capacity for all the PCs with prices below $500. Result set: model, speed, hd.
+/*1)Find the model number, speed and hard drive capacity for all the PCs with prices below $500. Result set: model, speed, hd.
+Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол. Вывести: model, speed и hd*/
 SELECT model,speed,hd FROM pc
 WHERE price < 500;
 
-2)Найдите производителей принтеров. Вывести: maker
---List all printer makers. Result set: maker.
+/*2)List all printer makers. Result set: maker.
+Найдите производителей принтеров. Вывести: maker*/
 SELECT DISTINCT maker FROM product
 WHERE type = 'printer';
 
-3)Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.:
---Find the model number, RAM and screen size of the laptops with prices over $1000.
+/*3)Find the model number, RAM and screen size of the laptops with prices over $1000.
+Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.*/
 SELECT model,ram,screen FROM laptop
 WHERE price > 1000;
 
-4)Найдите все записи таблицы Printer для цветных принтеров.:
---Find all records from the Printer table containing data about color printers.
+/*4)Find all records from the Printer table containing data about color printers.
+Найдите все записи таблицы Printer для цветных принтеров.*/
 SELECT * FROM Printer
 WHERE color = 'y';
 
-5)Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12x или 24x CD и цену менее 600 дол.:
---Find the model number, speed and hard drive capacity of PCs cheaper than $600 having a 12x or a 24x CD drive.
+/*5)Find the model number, speed and hard drive capacity of PCs cheaper than $600 having a 12x or a 24x CD drive.
+Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12x или 24x CD и цену менее 600 дол.*/
 SELECT model,speed,hd FROM pc
 WHERE (cd = '12x' OR cd ='24x') AND price < 600;
 или
 SELECT model,speed,hd FROM pc
 WHERE cd IN('12x','24x') AND price < 600;
 
-6)Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость.
---For each maker producing laptops with a hard drive capacity of 10 Gb or higher, find the speed of such laptops. Result set: maker, speed.
+/*6)For each maker producing laptops with a hard drive capacity of 10 Gb or higher, find the speed of such laptops. Result set: maker, speed.
+Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость.*/
 SELECT DISTINCT maker,speed FROM product p 
 JOIN laptop l ON p.model = l.model
 WHERE hd >= 10
 
-7)Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
+/*7)Get the models and prices for all commercially available products (of any type) produced by maker B.
+Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).*/
 SELECT DISTINCT PC.model, price FROM PC 
 JOIN Product p ON PC.model = p.model 
 WHERE maker = 'B'
@@ -45,60 +46,71 @@ SELECT DISTINCT pr.model, price FROM printer pr
 JOIN Product p ON pr.model = p.model 
 WHERE maker = 'B'
 
-8)Найдите производителя, выпускающего ПК, но не ПК-блокноты.
+/*8)Find the makers producing PCs but not laptops.
+Найдите производителя, выпускающего ПК, но не ПК-блокноты.*/
 SELECT maker FROM product
 WHERE type = 'pc'
 EXCEPT
 SELECT maker FROM product
 WHERE type = 'laptop'
 
-9)Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
+/*9)Find the makers of PCs with a processor speed of 450 MHz or more. Result set: maker.
+Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker*/
 SELECT DISTINCT maker FROM pc
 JOIN product p ON p.model = pc.model
 WHERE speed >= 450
 
-10)Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
+/*10)Find the printer models having the highest price. Result set: model, price.
+Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price*/
 SELECT p.model,price FROM printer p
 JOIN product pr ON pr.model = p.model
 WHERE price = (SELECT max(price) FROM printer)
 
-11)Найдите среднюю скорость ПК.
+/*11)Find out the average speed of PCs.
+Найдите среднюю скорость ПК.*/
 SELECT AVG(speed) FROM PC
 
-12)Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол.
-Select avg(speed) FROM laptop 
+/*12)Find out the average speed of the laptops priced over $1000.
+Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол.*/
+SELECT AVG(speed) FROM laptop 
 WHERE price > 1000
 
-13)Найдите среднюю скорость ПК, выпущенных производителем A.
+/*13)Find out the average speed of the PCs produced by maker A.
+Найдите среднюю скорость ПК, выпущенных производителем A.*/
 SELECT AVG(speed) FROM pc 
 JOIN product p
 ON pc.model = p.model
 WHERE p.maker = 'A'
 
-14)Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
+/*14)For the ships in the Ships table that have at least 10 guns, get the class, name, and country.
+Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.*/
 SELECT s.class,name,c.country FROM ships s
 JOIN classes c
 ON s.class = c.class
 WHERE numGuns >= 10
 
-15)Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+/*15)Get hard drive capacities that are identical for two or more PCs.Result set: hd.
+Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD*/
 SELECT hd FROM pc
 GROUP BY (hd)
 HAVING COUNT(hd) >= 2
 
-16)Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.
+/*16)Get pairs of PC models with identical speeds and the same RAM capacity. Each resulting pair should be displayed only once, i.e. (i, j) but not (j, i).
+Result set: model with the bigger number, model with the smaller number, speed, and RAM.
+Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.*/
 SELECT DISTINCT p1.model, p2.model, p1.speed, p1.ram 
 FROM pc p1, pc p2
 WHERE p1.speed = p2.speed AND p1.ram = p2.ram AND p1.model > p2.model
 
-17)Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
-Вывести: type, model, speed
+/*17)Get the laptop models that have a speed smaller than the speed of any PC.Result set: type, model, speed.
+Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.Вывести: type, model, speed*/
 SELECT DISTINCT type, l.model, l.speed 
 FROM laptop l
 JOIN product p ON l.model=p.model 
 WHERE speed < ALL (SELECT speed FROM PC)
 
-18)Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price
+/*18)Find the makers of the cheapest color printers.Result set: maker, price.
+Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price*/
 SELECT maker, price FROM printer pr
 JOIN product p ON p.model = pr.model
 WHERE price IN (SELECT min(price) FROM printer WHERE color = 'y') AND color = 'y'
