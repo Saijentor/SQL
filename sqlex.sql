@@ -169,3 +169,9 @@ SELECT maker,AVG(hd) AVG_HD FROM pc
 JOIN product p ON pc.model = p.model
 WHERE maker IN (SELECT maker FROM product WHERE type = 'printer')
 GROUP BY maker
+
+28)Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
+SELECT COUNT(maker) cnt_mkr FROM (
+SELECT maker FROM product
+GROUP BY maker
+HAVING COUNT(*) = 1) T
