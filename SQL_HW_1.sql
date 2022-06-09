@@ -49,6 +49,21 @@ where id > 140;
 -- 20. ¬ывести пользовател€ у которых id меньше 130
 select *  from students
 where id < 130;
+--  21. ¬ывести пользовател€ у которых id меньше 127 или больше 188
+select *  from students
+where id < 127 or id > 188;
+--  22. ¬ывести пользовател€ у которых id меньше либо равно 137
+select *  from students
+where id <= 137;
+--  23. ¬ывести пользовател€ у которых id больше либо равно 137
+select *  from students
+where id >= 137;
+--  24. ¬ывести пользовател€ у которых id больше 180 но меньше 190
+select *  from students
+where id > 180 and id < 190;
+--  25. ¬ывести пользовател€ у которых id между 180 и 190
+select *  from students
+where id between 180 and 190;
 
 
 
