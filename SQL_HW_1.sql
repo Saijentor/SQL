@@ -12,7 +12,7 @@ select name,email from students;
 select id,name,email,created_on  from students;
 -- 8. Вывести пользователей где password 12333
 select *  from students
-where password like '12333';
+where password = '12333';
 -- 9. Вывести пользователей которые были созданы 2021-03-26 00:00:00
 select *  from students
 where created_on = '2021-03-26 00:00:00';
@@ -37,5 +37,19 @@ where created_on = '2021-07-12 00:00:00' and name like '%Andrey%';
 --  16. Вывести пользователей которые были созданы 2021-07-12 00:00:00 и у которых в имени есть цифра 8
 select *  from students
 where created_on = '2021-07-12 00:00:00' and name like '%8%';
+-- 17. Вывести пользователя у которых id равен 110
+select *  from students
+order by id;
+--  18. Вывести пользователя у которых id равен 153
+select *  from students
+where id = 153;
+--  19. Вывести пользователя у которых id больше 140
+select *  from students
+where id > 140;
+-- 20. Вывести пользователя у которых id меньше 130
+select *  from students
+where id < 130;
+
+
 
 
