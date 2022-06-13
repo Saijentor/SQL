@@ -157,6 +157,28 @@ role_name int not null unique);
 --8 Поменять тип столба role_name с int на varchar(30)
 alter table roles alter column role_name type varchar(30);
 
+--9 Наполнить таблицу roles 20 строками
+insert into roles(role_name)
+values ('Junior Python developer'),
+	   ('Middle Python developer'),
+	   ('Senior Python developer'),
+	   ('Junior Java developer'),
+	   ('Middle Java developer'),
+	   ('Senior Java developer'),
+	   ('Junior JavaScript developer'),
+	   ('Middle JavaScript developer'),
+	   ('Senior JavaScript developer'),
+	   ('Junior Manual QA engineer'),
+	   ('Middle Manual QA engineer'),
+	   ('Senior Manual QA engineer'),
+	   ('Project Manager'),
+	   ('Designer'),
+	   ('HR'),
+	   ('CEO'),
+	   ('Sales manager'),
+	   ('Junior Automation QA engineer'),
+	   ('Middle Automation QA engineer'),
+	   ('Senior Automation QA engineer');
 
 select * from salary;
 select * from employees;
