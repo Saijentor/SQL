@@ -149,9 +149,16 @@ values (1,1),
 	   (79,7),
 	   (80,8);
 
---
+--7 Создать таблицу roles
+create table roles(
+id serial primary key,
+role_name int not null unique);
+
+--8 Поменять тип столба role_name с int на varchar(30)
+alter table roles alter column role_name type varchar(30);
 
 
 select * from salary;
 select * from employees;
 select * from employee_salary;
+select * from roles;
