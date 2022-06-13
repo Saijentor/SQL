@@ -2,6 +2,7 @@
 create table employees (
 	id serial primary key,
 	employees_name varchar(50) not null);
+
 --2 Наполнить таблицу employee 70 строками
 insert into employees (employees_name)
 values ('Kevin Wright'),
@@ -74,10 +75,12 @@ values ('Kevin Wright'),
 	   ('Tabitha Campbell'),
 	   ('Charli Edwards'),
 	   ('Emelia Scott');
+
 --3 Создать таблицу salary
 create table salary (
 	id serial primary key,
 	monthly_salary int not null);
+
 --4 Наполнить таблицу salary 15 строками
 insert into salary(monthly_salary)
 values (1000),
@@ -101,6 +104,7 @@ create table employee_salary (
 	id serial primary key,
 	employee_id int not null unique,
 	salary_id int not null);
+
 --6 Наполнить таблицу employee_salary 40 строками (в 10 строк из 40 вставить несуществующие employee_id)
 insert into employee_salary (employee_id,salary_id)
 values (1,1),
@@ -143,10 +147,12 @@ values (1,1),
 	   (78,6),
 	   (79,7),
 	   (80,8);
+
 --7 Создать таблицу roles
 create table roles(
 id serial primary key,
 role_name int not null unique);
+
 --8 Поменять тип столба role_name с int на varchar(30)
 alter table roles alter column role_name type varchar(30);
 
