@@ -178,8 +178,8 @@ values ('Junior Python developer'),
 	   ('Junior Automation QA engineer'),
 	   ('Middle Automation QA engineer'),
 	   ('Senior Automation QA engineer');
-	  
---10 Создать таблицу roles_employee
+	   
+--10 РЎРѕР·РґР°С‚СЊ С‚Р°Р±Р»РёС†Сѓ roles_employee
 create table roles_employee(
 id serial primary key,
 employee_id int not null unique,
@@ -190,7 +190,7 @@ foreign key (role_id)
 	references roles(id)
 );
 
---11 Наполнить таблицу roles_employee 40 строками
+--11 РќР°РїРѕР»РЅРёС‚СЊ С‚Р°Р±Р»РёС†Сѓ roles_employee 40 СЃС‚СЂРѕРєР°РјРё
 insert into roles_employee (employee_id,role_id)
 values (1,1),
 	   (2,2),
