@@ -190,7 +190,51 @@ foreign key (role_id)
 	references roles(id)
 );
 
+--11 Наполнить таблицу roles_employee 40 строками
+insert into roles_employee (employee_id,role_id)
+values (1,1),
+	   (2,2),
+	   (3,3),
+	   (4,4),
+	   (5,5),
+	   (6,6),
+	   (7,7),
+	   (8,8),
+	   (9,9),
+	   (10,10),
+	   (11,11),
+	   (12,12),
+	   (13,13),
+	   (14,14),
+	   (15,15),
+	   (16,16),
+	   (17,1),
+	   (18,2),
+	   (19,3),
+	   (20,4),
+	   (21,5),
+	   (22,6),
+	   (23,7),
+	   (24,8),
+	   (25,9),
+	   (26,10),
+	   (27,11),
+	   (28,12),
+	   (29,13),
+	   (30,14),
+	   (31,15),
+	   (32,16),
+	   (33,1),
+	   (34,2),
+	   (35,3),
+	   (36,4),
+	   (37,5),
+	   (38,6),
+	   (39,7),
+	   (40,8);
+
 select * from salary;
 select * from employees;
 select * from employee_salary;
 select * from roles;
+select * from roles_employee;
