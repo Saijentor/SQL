@@ -1,44 +1,44 @@
--- 1. Вывести всех работников чьи зарплаты есть в базе, вместе с зарплатами.
+-- 1. Р’С‹РІРµСЃС‚Рё РІСЃРµС… СЂР°Р±РѕС‚РЅРёРєРѕРІ С‡СЊРё Р·Р°СЂРїР»Р°С‚С‹ РµСЃС‚СЊ РІ Р±Р°Р·Рµ, РІРјРµСЃС‚Рµ СЃ Р·Р°СЂРїР»Р°С‚Р°РјРё.
 select employees_name,monthly_salary from employee_salary e
 join employees es on e.id=es.id
 join salary s on s.id=e.salary_id;
 
--- 2. Вывести всех работников у которых ЗП меньше 2000.
+-- 2. Р’С‹РІРµСЃС‚Рё РІСЃРµС… СЂР°Р±РѕС‚РЅРёРєРѕРІ Сѓ РєРѕС‚РѕСЂС‹С… Р—Рџ РјРµРЅСЊС€Рµ 2000.
 select employees_name,monthly_salary from employee_salary e
 join employees es on e.id=es.id
 join salary s on s.id=e.salary_id 
 where monthly_salary < 2000;
 
--- 3. Вывести все зарплатные позиции, но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
+-- 3. Р’С‹РІРµСЃС‚Рё РІСЃРµ Р·Р°СЂРїР»Р°С‚РЅС‹Рµ РїРѕР·РёС†РёРё, РЅРѕ СЂР°Р±РѕС‚РЅРёРє РїРѕ РЅРёРј РЅРµ РЅР°Р·РЅР°С‡РµРЅ. (Р—Рџ РµСЃС‚СЊ, РЅРѕ РЅРµ РїРѕРЅСЏС‚РЅРѕ РєС‚Рѕ РµС‘ РїРѕР»СѓС‡Р°РµС‚.)
 select distinct monthly_salary from salary s 
 left join employee_salary es on s.id=es.salary_id 
 order by monthly_salary desc;
 
--- 4. Вывести все зарплатные позиции  меньше 2000 но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
+-- 4. Р’С‹РІРµСЃС‚Рё РІСЃРµ Р·Р°СЂРїР»Р°С‚РЅС‹Рµ РїРѕР·РёС†РёРё  РјРµРЅСЊС€Рµ 2000 РЅРѕ СЂР°Р±РѕС‚РЅРёРє РїРѕ РЅРёРј РЅРµ РЅР°Р·РЅР°С‡РµРЅ. (Р—Рџ РµСЃС‚СЊ, РЅРѕ РЅРµ РїРѕРЅСЏС‚РЅРѕ РєС‚Рѕ РµС‘ РїРѕР»СѓС‡Р°РµС‚.)
 select distinct monthly_salary from salary s 
 left join employee_salary es on s.id=es.salary_id 
 where monthly_salary < 2000;
 
--- 5. Найти всех работников кому не начислена ЗП.
+-- 5. РќР°Р№С‚Рё РІСЃРµС… СЂР°Р±РѕС‚РЅРёРєРѕРІ РєРѕРјСѓ РЅРµ РЅР°С‡РёСЃР»РµРЅР° Р—Рџ.
 select employees_name from employees es
 left join employee_salary es2 on es.id=employee_id
 where salary_id is null
 order by es.id;
 
---6. Вывести всех работников с названиями их должности.
+--6. Р’С‹РІРµСЃС‚Рё РІСЃРµС… СЂР°Р±РѕС‚РЅРёРєРѕРІ СЃ РЅР°Р·РІР°РЅРёСЏРјРё РёС… РґРѕР»Р¶РЅРѕСЃС‚Рё.
 select employees_name,role_name from employees e
 left join roles_employee re on e.id=re.employee_id
 left join roles r on re.role_id=r.id 
 order by role_name;
 
---7. Вывести имена и должность только Java разработчиков.
+--7. Р’С‹РІРµСЃС‚Рё РёРјРµРЅР° Рё РґРѕР»Р¶РЅРѕСЃС‚СЊ С‚РѕР»СЊРєРѕ Java СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ.
 select employees_name,role_name from employees e
 join roles_employee re on e.id=re.employee_id
 join roles r on re.role_id=r.id 
 where role_name like '% Java %'
 order by role_name;
 
---8. Вывести имена и должность только Python разработчиков.
+--8. Р’С‹РІРµСЃС‚Рё РёРјРµРЅР° Рё РґРѕР»Р¶РЅРѕСЃС‚СЊ С‚РѕР»СЊРєРѕ Python СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ.
 select employees_name,role_name from employees e
 join roles_employee re on e.id=re.employee_id
 join roles r on re.role_id=r.id 
