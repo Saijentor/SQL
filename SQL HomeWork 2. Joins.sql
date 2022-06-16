@@ -30,3 +30,11 @@ select employees_name,role_name from employees e
 left join roles_employee re on e.id=re.employee_id
 left join roles r on re.role_id=r.id 
 order by role_name;
+
+--7. Вывести имена и должность только Java разработчиков.
+select employees_name,role_name from employees e
+left join roles_employee re on e.id=re.employee_id
+left join roles r on re.role_id=r.id 
+where role_name like '% Java %'
+order by role_name;
+
