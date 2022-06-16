@@ -1,0 +1,27 @@
+-- 1. Вывести всех работников чьи зарплаты есть в базе, вместе с зарплатами.
+select employees_name,monthly_salary from employee_salary e
+join employees es on e.id=es.id
+join salary s on s.id=e.salary_id;
+
+-- 2. Вывести всех работников у которых ЗП меньше 2000.
+select employees_name,monthly_salary from employee_salary e
+join employees es on e.id=es.id
+join salary s on s.id=e.salary_id 
+where monthly_salary < 2000;
+
+-- 3. Вывести все зарплатные позиции, но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
+select distinct monthly_salary from salary s 
+left join employee_salary es on s.id=es.salary_id 
+order by monthly_salary desc;
+
+-- 4. Вывести все зарплатные позиции  меньше 2000 но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
+select distinct monthly_salary from salary s 
+left join employee_salary es on s.id=es.salary_id 
+where monthly_salary < 2000;
+
+-- 5. Найти всех работников кому не начислена ЗП.
+select employees_name from employees es
+left join employee_salary es2 on es.id=employee_id
+where salary_id is null
+order by es.id;
+
