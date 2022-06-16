@@ -25,3 +25,8 @@ left join employee_salary es2 on es.id=employee_id
 where salary_id is null
 order by es.id;
 
+--6. ¬ывести всех работников с названи€ми их должности.
+select employees_name,role_name from employees e
+left join roles_employee re on e.id=re.employee_id
+left join roles r on re.role_id=r.id 
+order by role_name;
