@@ -181,7 +181,9 @@ join roles r on r.id=re.role_id
 where role_name like '%%Middle%'; 
 
 --27. Вывести количество разработчиков
-select count(employees_name) count_employees from employees;
+select count(employee_id) count_developers from roles_employee re
+join roles r on r.id=re.role_id 
+where role_name like '%developer%';
 
 --28. Вывести фонд (сумму) зарплаты разработчиков.
 select sum(monthly_salary) sum_salary_developer from employee_salary es
