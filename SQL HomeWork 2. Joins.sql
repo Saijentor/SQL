@@ -198,7 +198,7 @@ left join roles_employee re on e.id=re.employee_id
 left join roles r on r.id=re.role_id 
 left join employee_salary es on re.id=es.employee_id 
 left join salary s on es.salary_id=s.id
-order by employees_name;
+order by monthly_salary;
 
 /*30. Вывести имена, должности и ЗП всех специалистов по возрастанию 
  * у специалистов у которых ЗП от 1700 до 2300*/
@@ -208,7 +208,7 @@ left join roles r on r.id=re.role_id
 left join employee_salary es on re.id=es.employee_id 
 left join salary s on es.salary_id=s.id
 where monthly_salary between 1700 and 2300
-order by employees_name;
+order by monthly_salary;
 
 /*31. Вывести имена, должности и ЗП всех специалистов по возрастанию 
  * у специалистов у которых ЗП меньше 2300*/
@@ -218,7 +218,7 @@ left join roles r on r.id=re.role_id
 left join employee_salary es on re.id=es.employee_id 
 left join salary s on es.salary_id=s.id
 where monthly_salary < 2300 or monthly_salary is null
-order by employees_name;
+order by monthly_salary;
 
 /*32. Вывести имена, должности и ЗП всех специалистов по возрастанию 
  *у специалистов у которых ЗП равна 1100, 1500, 2000*/
@@ -228,4 +228,4 @@ left join roles r on r.id=re.role_id
 left join employee_salary es on re.id=es.employee_id 
 left join salary s on es.salary_id=s.id
 where monthly_salary in (1100, 1500, 2000)
-order by employees_name;
+order by monthly_salary;
