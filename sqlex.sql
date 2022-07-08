@@ -120,27 +120,33 @@ WHERE type = 'pc'
 GROUP BY maker
 HAVING COUNT(model) >= 3;
 
-21)Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+/*Find out the maximum PC price for each maker having models in the PC table. Result set: maker, maximum price.
+21)Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.*/
 Вывести: maker, максимальная цена.
 SELECT maker, MAX(price) max_price FROM product p
 JOIN pc ON p.model = pc.model
 GROUP BY maker;
 
-22)Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена
+/*For each value of PC speed that exceeds 600 MHz, find out the average price of PCs with identical speeds.
+Result set: speed, average price.
+22)Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена*/
 SELECT speed, AVG(price) avg_price FROM pc
 WHERE speed > 600
 GROUP BY speed;
 
+/*Get the makers producing both PCs having a speed of 750 MHz or higher and laptops with a speed of 750 MHz or higher.
+Result set: maker
 23)Найдите производителей, которые производили бы как ПК
 со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
-Вывести: Maker
+Вывести: Maker*/
 SELECT maker FROM pc JOIN product p ON p.model = pc.model
 WHERE speed >= 750
 INTERSECT
 SELECT maker FROM laptop l JOIN product p ON p.model = l.model
 WHERE speed >= 750;
 
-24)Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+/*List the models of any type having the highest price of all products present in the database.
+24)Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.*/
 WITH a_model AS (  
 SELECT model,price FROM laptop 
 UNION ALL 
@@ -150,13 +156,17 @@ SELECT model,price FROM printer)
 SELECT distinct model FROM a_model 
 WHERE price in ( SELECT max(price) FROM a_model);
 
-25)Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM. Вывести: Maker
+/*Find the printer makers also producing PCs with the lowest RAM capacity and the highest processor speed of all PCs having the lowest RAM capacity.
+Result set: maker.
+25)Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM. Вывести: Maker*/
 SELECT DISTINCT maker FROM Product 
 WHERE type = 'printer' 
 AND maker IN (SELECT maker FROM Product JOIN Pc ON Product.model = Pc.model WHERE ram = (SELECT MIN(ram) FROM Pc) 
 AND speed = (SELECT MAX(speed) FROM Pc WHERE ram = (SELECT MIN(ram) FROM Pc)));
 
-26)Найдите среднюю цену ПК и ПК-блокнотов, выпущенных производителем A (латинская буква). Вывести: одна общая средняя цена.
+/*Find out the average price of PCs and laptops produced by maker A.
+Result set: one overall average price for all items.
+26)Найдите среднюю цену ПК и ПК-блокнотов, выпущенных производителем A (латинская буква). Вывести: одна общая средняя цена.*/
 WITH a_price AS (
 SELECT price FROM pc JOIN product p ON pc.model = p.model
 WHERE maker = 'a'
@@ -165,12 +175,15 @@ SELECT price FROM laptop l JOIN product p ON l.model = p.model
 WHERE maker = 'a')
 SELECT avg(price) AVG_Price FROM a_price;
 
-27)Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры. Вывести: maker, средний размер HD.
+/*Find out the average hard disk drive capacity of PCs produced by makers who also manufacture printers.
+Result set: maker, average HDD capacity.
+27)Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры. Вывести: maker, средний размер HD.*/
 SELECT maker,AVG(hd) AVG_HD FROM pc JOIN product p ON pc.model = p.model
 WHERE maker IN (SELECT maker FROM product WHERE type = 'printer')
 GROUP BY maker;
 
-28)Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
+/*Using Product table, find out the number of makers who produce only one model.
+28)Используя таблицу Product, определить количество производителей, выпускающих по одной модели.*/
 SELECT COUNT(maker) cnt_mkr FROM (SELECT maker FROM product
 GROUP BY maker
 HAVING COUNT(*) = 1) T;
