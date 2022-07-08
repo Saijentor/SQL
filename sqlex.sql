@@ -121,8 +121,8 @@ GROUP BY maker
 HAVING COUNT(model) >= 3;
 
 /*Find out the maximum PC price for each maker having models in the PC table. Result set: maker, maximum price.
-21)Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.*/
-Вывести: maker, максимальная цена.
+21)Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+Вывести: maker, максимальная цена.*/
 SELECT maker, MAX(price) max_price FROM product p
 JOIN pc ON p.model = pc.model
 GROUP BY maker;
